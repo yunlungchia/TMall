@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.personal.tmall.mapper.SecKillOrdersMapper">
+  <resultMap id="BaseResultMap" type="com.personal.tmall.entity.SecKillOrders">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="orders_id" jdbcType="BIGINT" property="ordersId" />
+    <result column="goods_id" jdbcType="BIGINT" property="goodsId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from seckill_orders
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteAll">
+    delete from seckill_orders
+  </delete>
+  <insert id="insert" parameterType="com.personal.tmall.entity.SecKillOrders">
+    insert into seckill_orders (id, user_id, orders_id, 
+      goods_id)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{ordersId,jdbcType=BIGINT}, 
+      #{goodsId,jdbcType=BIGINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.personal.tmall.entity.SecKillOrders">
+    update seckill_orders
+    set user_id = #{userId,jdbcType=BIGINT},
+      orders_id = #{ordersId,jdbcType=BIGINT},
+      goods_id = #{goodsId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, user_id, orders_id, goods_id
+    from seckill_orders
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, user_id, orders_id, goods_id
+    from seckill_orders
+  </select>
+  <select id="selectByUserIdAndGoodsId" resultType="com.personal.tmall.entity.SecKillOrders">
+    select id, user_id, orders_id, goods_id
+    from seckill_orders
+    where user_id = #{userId,jdbcType=BIGINT}
+    and goods_id = #{goodsId,jdbcType=BIGINT}
+  </select>
+</mapper>

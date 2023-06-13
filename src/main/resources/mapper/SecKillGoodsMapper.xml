@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.personal.tmall.mapper.SecKillGoodsMapper">
+  <resultMap id="BaseResultMap" type="com.personal.tmall.entity.SecKillGoods">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="goods_id" jdbcType="BIGINT" property="goodsId" />
+    <result column="seckill_price" jdbcType="DECIMAL" property="seckillPrice" />
+    <result column="stock_count" jdbcType="INTEGER" property="stockCount" />
+    <result column="start_date" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from seckill_goods
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.personal.tmall.entity.SecKillGoods">
+    insert into seckill_goods (id, goods_id, seckill_price, 
+      stock_count, start_date, end_date
+      )
+    values (#{id,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, #{seckillPrice,jdbcType=DECIMAL}, 
+      #{stockCount,jdbcType=INTEGER}, #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.personal.tmall.entity.SecKillGoods">
+    update seckill_goods
+    set goods_id = #{goodsId,jdbcType=BIGINT},
+      seckill_price = #{seckillPrice,jdbcType=DECIMAL},
+      stock_count = #{stockCount,jdbcType=INTEGER},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByReduceStockCount">
+    update seckill_goods
+    set stock_count = stock_count - 1
+    where goods_id = #{goodsId,jdbcType=BIGINT}
+    and stock_count > 0
+  </update>
+  <update id="updateByResetStockCount">
+    update seckill_goods
+    set stock_count = #{stockCount,jdbcType=INTEGER}
+    where goods_id = #{goodsId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, goods_id, seckill_price, stock_count, start_date, end_date
+    from seckill_goods
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, goods_id, seckill_price, stock_count, start_date, end_date
+    from seckill_goods
+  </select>
+  <select id="selectByGoodsId" resultType="com.personal.tmall.entity.SecKillGoods">
+    select id, goods_id, seckill_price, stock_count, start_date, end_date
+    from seckill_goods
+    where goods_id = #{goodsId,jdbcType=BIGINT}
+  </select>
+</mapper>
