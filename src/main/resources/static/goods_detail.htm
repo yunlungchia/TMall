@@ -197,6 +197,7 @@
     });
 
     function countDown() {
+        var goodsId = g_getQueryString("goodsId");
         var remainSeconds = $("#remainSeconds").val();
         var timeout;
         if (remainSeconds > 0) {
@@ -215,8 +216,7 @@
                 clearTimeout(timeout);
             }
             $("#seckillTip").html("秒杀进行中");
-            console.log('test');
-            $("#verifyCodeImg").attr("src", "/seckill/verifyCode?goodsId=" + $("#goodsId").val());
+            $("#verifyCodeImg").attr("src", "/seckill/verifyCode?goodsId=" + goodsId);
             $("#verifyCodeImg").show();
             $("#verifyCode").show();
         } else {

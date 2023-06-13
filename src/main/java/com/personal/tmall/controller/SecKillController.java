@@ -161,7 +161,7 @@ public class SecKillController implements InitializingBean {
     public Result<String> getPath(User user, Model model, @RequestParam(value = "goodsId") long goodsId
             , @RequestParam(value = "verifyCode", defaultValue = "0") int verifyCode, HttpServletRequest request) {
 
-        if (user.getId() == null) {
+        if (user == null) {
             return Result.error(CodeMsg.SESSION_ERROR);
         }
 
@@ -192,13 +192,12 @@ public class SecKillController implements InitializingBean {
     @RequestMapping(value = "/verifyCode", method = RequestMethod.GET)
     @ResponseBody
     public Result<String> getSecKillVerifyCode(HttpServletResponse response, User user,
-                                               @RequestParam("goodsId") String goodsId) {
+                                               @RequestParam(name = "goodsId") String goodsId) {
         if (user == null) {
             log.error("getSecKillVerifyCode User is null");
             return Result.error(CodeMsg.SESSION_ERROR);
         }
         try {
-            log.info("getSecKillVerifyCode user:{}, goodsId:{}", user.getId(), goodsId);
             if (goodsId.isEmpty()) {
                 throw new RuntimeException("Bad goodsId");
             }

@@ -3,7 +3,7 @@
 -- ----------------------------
 DROP TABLE IF EXISTS `seckill_goods`;
 CREATE TABLE `seckill_goods` (
-    `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '秒杀商品表主键',
+    `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '秒杀商品id',
     `goods_id` bigint(20) DEFAULT NULL COMMENT '商品id',
     `seckill_price` decimal(10,2) DEFAULT NULL COMMENT '秒杀价',
     `stock_count` int(11) DEFAULT NULL COMMENT '库存数量',

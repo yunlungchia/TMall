@@ -31,13 +31,13 @@ public class OrderController {
     @ResponseBody
     public Result<OrderDetailVo> detail(@RequestParam("orderId") Long orderId, User user) {
         // 首先判断用户是否登录，如果未登录，则返回
-        if(user == null) {
+        if (user == null) {
             return Result.error(CodeMsg.SESSION_ERROR);
         }
 
         // 查询订单OrderInfo
         OrderInfo orderInfo = ordersService.queryOrderByOrderId(orderId);
-        if(orderInfo==null) {
+        if (orderInfo == null) {
             return Result.error(CodeMsg.ORDER_NOTFOUND);
         }
 

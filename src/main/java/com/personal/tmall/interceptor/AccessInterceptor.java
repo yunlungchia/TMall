@@ -49,7 +49,7 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
             boolean needLogin = accessLimit.needLogin();
             String key = request.getRequestURI();
             if (needLogin) {
-                if (user.getId() == null) {
+                if (user == null) {
                     render(response, CodeMsg.SESSION_ERROR);
                     return false;
                 }

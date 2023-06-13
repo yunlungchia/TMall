@@ -45,8 +45,8 @@ public class GoodsServiceImpl implements GoodsService {
             if (secKillGoods != null) {
                 BeanUtils.copyProperties(goods, goodsVo);
                 BeanUtils.copyProperties(secKillGoods, goodsVo, "id");
+                goodsVoList.add(goodsVo);
             }
-            goodsVoList.add(goodsVo);
         });
         return goodsVoList;
     }

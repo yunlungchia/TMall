@@ -11,11 +11,13 @@ CREATE TABLE `goods` (
      `goods_price` decimal(10,2) DEFAULT NULL COMMENT '商品单价',
      `goods_stock` int(11) DEFAULT NULL COMMENT '商品库存，-1表示没有限制',
      PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT= 10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of goods
 -- ----------------------------
 INSERT INTO `goods` VALUES ('1', 'iphone X', 'iphone X(A1865 64G 黑色 全网通 4G手机)', '/img/iphonex.png', 'iphone X(A1865 64G 黑色 全网通 4G手机)', '8765.00', '10000');
 INSERT INTO `goods` VALUES ('2', '华为Meta 10', '华为Meta 10(A1865 64G 黑色 全网通 4G手机)', '/img/meta10.png', '华为Meta 10(A1865 64G 黑色 全网通 4G手机)', '3300.00', '-1');
+INSERT INTO `goods` VALUES ('3', 'iphone 8', 'iphone 8(123 32G 黑色 全网通 4G手机)', '/img/iphone8.png', 'iphone 8(123 32G 黑色 全网通 4G手机)', '2400.00', '500');
+INSERT INTO `goods` VALUES ('4', 'mi 6', '小米 6(x7778 45G 白色 全网通 4G手机)', '/img/mi6.png', '小米 6(x7778 45G 白色 全网通 4G手机)', '4210.00', '200');
 

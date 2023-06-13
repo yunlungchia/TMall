@@ -39,7 +39,7 @@ public class MQConfig {
 
     /**
      * Direct模式 = directQueue
-     * */
+     */
     @Bean
     public Queue queue() {
         return new Queue(directQueue, true);
@@ -52,6 +52,7 @@ public class MQConfig {
     Queue topicQueue() {
         return new Queue(topicQueue, false);
     }
+
     @Bean
     TopicExchange topicExchange() {
         return new TopicExchange(topicExchange);
@@ -60,7 +61,8 @@ public class MQConfig {
     /**
      * Bindings：消息的路由涉及到一个和exchanges类型及一些规则相关的算法
      * 也就是说消息的路由需要遵守一定的规则，这些规则我们就称之为Bindings。
-     * @return
+     *
+     * @return binding
      */
     @Bean
     Binding topicBinding() {
